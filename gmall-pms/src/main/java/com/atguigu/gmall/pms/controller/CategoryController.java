@@ -2,6 +2,7 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,25 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+      //三级分类id查询一二三级分类
+    @GetMapping("all/{cid3}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesByCid3(@PathVariable("cid3")Long cid3){
+        List<CategoryEntity> itemCategoryVos = categoryService.queryCategoriesByCid3(cid3);
+         return ResponseVo.ok(itemCategoryVos);
+    }
+    @GetMapping("subs/{pid}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesWithSub(@PathVariable("pid")Long pid){
+        List<CategoryEntity> categoryEntityList = categoryService.queryCategoriesWithSub(pid);
+        return ResponseVo.ok(categoryEntityList);
+    }
+    @GetMapping("parent/{parentId}")
+    public ResponseVo<List<CategoryEntity>> queryCategroy(@PathVariable("parentId") long pid){
+        QueryWrapper<CategoryEntity> queryWrapper = new QueryWrapper<>();
+        if (pid > -1){
+            queryWrapper.eq("parent_id", pid);
+        }
+        return  ResponseVo.ok(categoryService.list(queryWrapper));
+    }
 
     /**
      * 列表
@@ -41,7 +61,6 @@ public class CategoryController {
     @ApiOperation("分页查询")
     public ResponseVo<PageResultVo> queryCategoryByPage(PageParamVo paramVo){
         PageResultVo pageResultVo = categoryService.queryPage(paramVo);
-
         return ResponseVo.ok(pageResultVo);
     }
 

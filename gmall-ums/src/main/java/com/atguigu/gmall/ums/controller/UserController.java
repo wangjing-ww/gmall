@@ -19,6 +19,8 @@ import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.ResponseVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
 
+import javax.websocket.server.PathParam;
+
 /**
  * 用户表
  *
@@ -33,7 +35,31 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @ApiOperation("查询用户")
+    @GetMapping("query")
+    public ResponseVo<UserEntity> queryUser(
+            @PathParam("loginName")String loginName,
+            @PathParam("password")String password
+    ){
+        UserEntity userEntity = userService.queryUser(loginName,password);
 
+        return ResponseVo.ok(userEntity);
+    }
+     @ApiOperation("注册")
+     @PostMapping("register")
+     public ResponseVo<Object> register(UserEntity userEntity,@RequestParam("code")String code){
+
+         userService.register(userEntity,code);
+         return ResponseVo.ok(null);
+     }
+
+    @GetMapping("check/{data}/{type}")
+    public ResponseVo<Boolean> checkData(@PathVariable("data")String data,@PathVariable("type")Integer type ){
+       Boolean result=  userService.checkData(data,type);
+
+       return ResponseVo.ok(result);
+
+    }
     /**
      * 列表
      */

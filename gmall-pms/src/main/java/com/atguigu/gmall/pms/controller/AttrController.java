@@ -2,6 +2,7 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import com.atguigu.gmall.common.bean.PageResultVo;
 import com.atguigu.gmall.common.bean.ResponseVo;
 import com.atguigu.gmall.common.bean.PageParamVo;
 
+import javax.websocket.server.PathParam;
+
 /**
  * 商品属性
  *
@@ -34,6 +37,22 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+     @ApiOperation("分类查询")
+     @GetMapping("category/{cid}")
+   public ResponseVo<List<AttrEntity>> queryAttrByCid(
+                 @PathVariable("cid") Long cid,
+                 @RequestParam(value = "type",required = false) Integer type,
+                 @RequestParam(value = "searchType",required = false) Integer searchType){
+         List<AttrEntity> attrEntities = this.attrService.queryAttrById(cid,type,searchType);
+         return ResponseVo.ok(attrEntities);
+
+   }
+    @ApiOperation("查询组下的规格参数")
+    @GetMapping("group/{gid}")
+    public ResponseVo<List<AttrEntity>> queryAttrByGid(@PathVariable("gid") Long gid){
+        List<AttrEntity> attrEntities = this.attrService.list(new QueryWrapper<AttrEntity>().eq("group_id", gid));
+        return ResponseVo.ok(attrEntities);
+    }
     /**
      * 列表
      */

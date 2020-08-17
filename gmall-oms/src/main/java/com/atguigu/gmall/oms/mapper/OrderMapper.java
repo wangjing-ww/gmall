@@ -13,5 +13,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface OrderMapper extends BaseMapper<OrderEntity> {
-	
+
+    int closeOrder(String orderToken);
+
+    int successOrder(String orderToken);
+
 }

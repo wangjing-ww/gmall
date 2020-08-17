@@ -1,0 +1,71 @@
+server:
+  port: 18091
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    base-url: http://localhost:9411/
+    sender:
+      type: web
+    discovery-client-enabled: false
+  sleuth:
+    sampler:
+      probability: 1
+  redis:
+    host: 112.124.23.15
+    port: 1128
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/guli_cart?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: '070216006'
+  thymeleaf:
+    cache: false
+  task:
+    execution:
+      thread-name-prefix: task-  #线程池的线程名的前缀
+      pool:
+        core-size: 8   #核心线程数
+        max-size: 20   # 最大线程数
+        keep-alive: 60s  # 允许线程的空闲时间，当超过了核心线程之外的线程 在空闲时间到达之后就会被销毁 默认为60s
+        queue-capacity: 200 #缓冲队列大小
+        allow-core-thread-timeout: true # 是否允许核心线程 超时 即开启线程池的动态的增长和缩小 默认为 true
+      shutdown:
+        await-termination: true #关闭的时候 是否等待定时任务完成 默认为false
+        await-termination-period: 60 #等待 任务完成最长的时间 单位为s 默认为 0
+  rabbitmq:
+    host: 112.124.23.15
+    username: jingjing
+    virtual-host: /jingjing
+    port: 5672
+    password: 123456
+    listener:
+      type: simple   # simple-listener容器使用一个额外线程处理消息
+      # direct-listener（监听器）容器直接使用consumer线程
+      simple:
+        prefetch: 1   # 能者多劳
+        concurrency: 3  # 避免消息堆积，初始化多个消费者线程
+        acknowledge-mode: manual
+        #  anual-手动  auto-自动（无异常直接确认，有异常无限重试） none-不重试
+#    publisher-confirm-type: simple
+#    publisher-returns: true
+feign:
+  sentinel:
+    enabled: true
+ribbon:
+  ReadTimeout:  50000
+  ConnectTimeout: 50000
+auth:
+  jwt:
+    pubKeyPath: D:\\learnplace\\rsa\\rsa.pub
+    userkey: userkey
+    cookieName: GMALL-TOKEN
+
+    expire: 180

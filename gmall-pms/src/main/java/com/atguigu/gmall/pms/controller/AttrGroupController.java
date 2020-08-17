@@ -2,6 +2,9 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.pms.vo.GroupVo;
+import com.atguigu.gmall.pms.vo.ItemGroupVo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,30 @@ public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
 
+    @GetMapping("withattrvalues")
+    public ResponseVo<List<ItemGroupVo>> queryGroupsBySpuIdAndCid(
+            @RequestParam("spuId") Long spuId,
+            @RequestParam("skuId") Long skuId,
+            @RequestParam("cid") Long cid
+    ){
+        List<ItemGroupVo> groupVos =  attrGroupService.queryGroupsBySpuIdAndCid(spuId,skuId,cid);
+        return ResponseVo.ok(groupVos);
+    }
+
+
+     @ApiOperation("根据三级分类查询id查询分组及组下的规格参数")
+    @GetMapping("withattrs/{catId}")
+     public ResponseVo<List<GroupVo>> queryByCid(@PathVariable("catId")Long cid){
+        List<GroupVo> groupVos =  this.attrGroupService.queryByCid(cid);
+        return ResponseVo.ok(groupVos);
+     }
+    @GetMapping("category/{cid}")
+    public ResponseVo<List<AttrGroupEntity>> queryCategoryByCid(@PathVariable("cid") Long cid){
+        List<AttrGroupEntity> attrGroupEntities = this.attrGroupService.list(new QueryWrapper<AttrGroupEntity>().eq("category_id", cid));
+
+        return ResponseVo.ok(attrGroupEntities);
+
+    }
     /**
      * 列表
      */

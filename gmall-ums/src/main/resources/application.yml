@@ -11,7 +11,7 @@ spring:
         port: 8719
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/guli_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/guli_ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: '070216006'
   redis:
@@ -25,7 +25,7 @@ spring:
     sampler:
       probability: 1
 mybatis-plus:
-  mapper-locations: classpath:mapper/pms/*.xml  # 读取映射文件
+  mapper-locations: classpath:mapper/ums/*.xml  # 读取映射文件
   type-aliases-package: com.atguigu.gmall.ums.entity
   global-config:
     db-config:
@@ -33,3 +33,6 @@ mybatis-plus:
 feign:
   sentinel:
     enabled: true
+ribbon:
+  ReadTimeout:  50000
+  ConnectTimeout: 50000

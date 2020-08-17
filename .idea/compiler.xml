@@ -7,41 +7,99 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gmall-wms" />
-        <module name="gmall-ums" />
-        <module name="gmall-sms" />
-        <module name="gmall-oms" />
-        <module name="gmall-common" />
-        <module name="gmall-generator" />
-        <module name="gmall-pms" />
+        <module name="gmall-sms-interface" />
+        <module name="gmall-order" />
+        <module name="gmall-message-interface" />
+        <module name="gmall-wms-interface" />
         <module name="gmall-gateway" />
+        <module name="es-demo" />
+        <module name="gmall-ums-interface" />
+        <module name="producer-demo" />
+        <module name="gmall-index" />
+        <module name="gmall-oms" />
+        <module name="gmall-ums" />
+        <module name="elasticsearch-demo" />
+        <module name="thymeleaf-demo" />
+        <module name="gmall-cart-interface" />
         <module name="gmall-admin" />
+        <module name="gmall-pms" />
+        <module name="gmall-oms-interface" />
+        <module name="gmall-payment" />
+        <module name="gmall-sms" />
+        <module name="gmall-pms-interface" />
+        <module name="gmall-search" />
+        <module name="gmall-scheduled" />
+        <module name="gmall-item" />
+        <module name="gmall-common" />
+        <module name="gmall-message" />
+        <module name="gmall-auth" />
+        <module name="consumer-demo" />
+        <module name="gmall-wms" />
+        <module name="gmall-generator" />
+        <module name="gmall-cart" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="consumer-demo" target="1.8" />
+      <module name="elasticsearch-demo" target="1.8" />
       <module name="gmall" target="1.8" />
       <module name="gmall-admin" target="1.8" />
+      <module name="gmall-auth" target="1.8" />
+      <module name="gmall-cart" target="1.8" />
+      <module name="gmall-cart-interface" target="1.8" />
       <module name="gmall-common" target="1.8" />
       <module name="gmall-gateway" target="1.8" />
       <module name="gmall-generator" target="1.8" />
+      <module name="gmall-index" target="1.8" />
+      <module name="gmall-item" target="1.8" />
+      <module name="gmall-message" target="1.8" />
+      <module name="gmall-message-interface" target="1.8" />
       <module name="gmall-oms" target="1.8" />
+      <module name="gmall-oms-interface" target="1.8" />
+      <module name="gmall-order" target="1.8" />
+      <module name="gmall-payment" target="1.8" />
       <module name="gmall-pms" target="1.8" />
+      <module name="gmall-pms-interface" target="1.8" />
+      <module name="gmall-scheduled" target="1.8" />
+      <module name="gmall-search" target="1.8" />
       <module name="gmall-sms" target="1.8" />
+      <module name="gmall-sms-interface" target="1.8" />
       <module name="gmall-ums" target="1.8" />
+      <module name="gmall-ums-interface" target="1.8" />
       <module name="gmall-wms" target="1.8" />
+      <module name="gmall-wms-interface" target="1.8" />
+      <module name="producer-demo" target="1.8" />
+      <module name="thymeleaf-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="elasticsearch-demo" options="-parameters" />
       <module name="gmall-admin" options="-parameters" />
+      <module name="gmall-auth" options="-parameters" />
+      <module name="gmall-cart" options="-parameters" />
+      <module name="gmall-cart-interface" options="-parameters" />
       <module name="gmall-common" options="-parameters" />
       <module name="gmall-gateway" options="-parameters" />
       <module name="gmall-generator" options="-parameters" />
+      <module name="gmall-index" options="-parameters" />
+      <module name="gmall-item" options="-parameters" />
+      <module name="gmall-message" options="-parameters" />
+      <module name="gmall-message-interface" options="-parameters" />
       <module name="gmall-oms" options="-parameters" />
+      <module name="gmall-oms-interface" options="-parameters" />
+      <module name="gmall-order" options="-parameters" />
+      <module name="gmall-payment" options="-parameters" />
       <module name="gmall-pms" options="-parameters" />
+      <module name="gmall-pms-interface" options="-parameters" />
+      <module name="gmall-scheduled" options="-parameters" />
+      <module name="gmall-search" options="-parameters" />
       <module name="gmall-sms" options="-parameters" />
+      <module name="gmall-sms-interface" options="-parameters" />
       <module name="gmall-ums" options="-parameters" />
+      <module name="gmall-ums-interface" options="-parameters" />
       <module name="gmall-wms" options="-parameters" />
+      <module name="gmall-wms-interface" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,0 +1,52 @@
+server:
+  port: 18086
+
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    base-url: http://localhost:9411
+    discovery-client-enabled: false
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+  elasticsearch:
+    rest:
+      uris: http://112.124.23.15:9200
+  jackson:
+    default-property-inclusion: non_null
+  rabbitmq:
+    host: 112.124.23.15
+    username: jingjing
+    virtual-host: /jingjing
+    port: 5672
+    password: 123456
+
+    listener:
+      type: simple   # simple-listener容器使用一个额外线程处理消息
+      # direct-listener（监听器）容器直接使用consumer线程
+      simple:
+        prefetch: 1   # 能者多劳
+        concurrency: 4  # 避免消息堆积，初始化多个消费者线程
+        acknowledge-mode: manual
+        #  anual-手动  auto-自动（无异常直接确认，有异常无限重试） none-不重试
+feign:
+  sentinel:
+    enabled: true
+
+logging:
+  level:
+    com.atguigu.gmall: debug
+ribbon:
+  ReadTimeout:  50000
+  ConnectTimeout: 50000
+

@@ -1,0 +1,58 @@
+server:
+  port: 18092
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  zipkin:
+    base-url: http://localhost:9411
+    discovery-client-enabled: false
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+  redis:
+    host: 112.124.23.15
+    port: 1128
+  rabbitmq:
+    host: 112.124.23.15
+    username: jingjing
+    virtual-host: /jingjing
+    port: 5672
+    password: 123456
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+    publisher-confirm-type: simple
+    publisher-returns: true
+  thymeleaf:
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_payment?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: '070216006'
+feign:
+  sentinel:
+    enabled: true
+logging:
+  level:
+    com.atguigu.gmall: debug
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+alipay:
+  app_id: 2021001163617452
+  gatewayUrl: https://openapi.alipay.com/gateway.do
+  merchant_private_key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQ
+  alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkWs
+  notify_url: http://9glldacce2.52http.net/pay/success
+  return_url: http://9glldacce2.52http.net/pay/ok

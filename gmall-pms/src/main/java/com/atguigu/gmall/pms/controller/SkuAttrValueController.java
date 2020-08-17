@@ -2,6 +2,7 @@ package com.atguigu.gmall.pms.controller;
 
 import java.util.List;
 
+import com.atguigu.gmall.pms.vo.SaleAttrValueVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,31 @@ public class SkuAttrValueController {
     @Autowired
     private SkuAttrValueService skuAttrValueService;
 
+     @GetMapping("spu/sku/{spuId}")
+     public ResponseVo<String> querySkusJsonBySpuId(@PathVariable("spuId")Long spuId){
+
+         String skusJson = this.skuAttrValueService.querySkusJsonBySpuId(spuId);
+         return ResponseVo.ok(skusJson);
+
+     }    /**
+     * 根据spuId查询spu下的所有销售属性
+     * @param spuId
+     * @return
+     */
+    @GetMapping("spu/{spuId}")
+    public ResponseVo<List<SaleAttrValueVo>> querySkuAttrValuesBySpuId(@PathVariable("spuId")Long spuId){
+        List<SaleAttrValueVo> saleAttrValueVos = this.skuAttrValueService.querySkuAttrValuesBySpuId(spuId);
+        return ResponseVo.ok(saleAttrValueVos);
+    }
+
+
+    @ApiOperation("根据spuId查询检索属性及值")
+    @GetMapping("sku/{skuId}")
+    public ResponseVo<List<SkuAttrValueEntity>> querySearchAttrValueBySkuId(@PathVariable("skuId")Long skuId){
+        List<SkuAttrValueEntity> attrValueEntities = skuAttrValueService.querySearchAttrValueBySkuId(skuId);
+
+        return ResponseVo.ok(attrValueEntities);
+    }
     /**
      * 列表
      */

@@ -27,3 +27,57 @@ spring:
           uri: lb://sms-service
           predicates:
             - Path=/sms/**
+        # search 路由
+        - id: search-route
+          uri: lb://search-service
+          predicates:
+            - Host=search.gmall.com
+        # 首页的同步请求路由
+        - id: index-route1
+          uri: lb://index-service
+          predicates:
+            - Host=www.gmall.com
+          # - Path=/index/**  如果写在一个里面，他们的关系是and关系
+        - id: index-route2 # 首页的异步请求路由
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
+
+        - id: item-route
+          uri: lb://item-service
+          predicates:
+            - Path=/item/**
+        - id: message-route # 短信发送路由
+          uri: lb://message-service
+          predicates:
+            - Path=/message/**
+        - id: auth-route  #单点登入路由
+          uri: lb://auth-service
+          predicates:
+            - Host=sso.gmall.com
+        - id: cart-route  #单点登入路由
+          uri: lb://cart-service
+          predicates:
+            - Host=cart.gmall.com
+        - id: order-route  #单点登入路由
+          uri: lb://order-service
+          predicates:
+            - Host=order.gmall.com
+          filters:
+            - Auth=/confirm,/submit
+        - id: payment-route  #单点登入路由
+          uri: lb://payment-service
+          predicates:
+            - Host=payment.gmall.com
+          filters:
+            - Auth=/pay.html,/alipay.html
+        - id: payment-route2  #单点登入路由
+          uri: lb://payment-service
+          predicates:
+           - Path=/pay/**
+      x-forwarded:
+        host-enabled: true
+auth:
+  jwt:
+    pubKeyPath: D:\\learnplace\\rsa\\rsa.pub
+    cookieName: GMALL-TOKEN

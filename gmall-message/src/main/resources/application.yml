@@ -1,0 +1,44 @@
+server:
+  port: 18090 # 服务端口
+
+spring:
+  #spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli_ums?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: '070216006'
+  redis:
+    host: 112.124.23.15
+    port: 1128
+  zipkin:
+    base-url: http://localhost:9411
+    discovery-client-enabled: false
+    sender:
+      type: web
+    sleuth:
+      sampler:
+        probability: 1
+#阿里云短信
+aliyun:
+  message:
+    regionId: cn-hangzhou
+    keyId: LTAI4GAYyvuJrF4SCjbAGqsK
+    keySecret: gmROllOc3wxLFXE2H5vVVdKcNflU0c
+    templateCode: SMS_195225789
+    signName: 在线教育项目
+#aliyun:
+#  message:
+#    regionId: cn-hangzhou
+#    keyId: LTAI4G1rbwTdVKwYtyvoqd8C
+#    keySecret: LfUOxaOv39hLtLo5vLpl8spRpbO1Cn
+#    templateCode: SMS_195220562
+#    signName: 谷粒

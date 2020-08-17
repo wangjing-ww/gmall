@@ -33,3 +33,17 @@
 #feign:
 #  sentinel:
 #    enabled: true
+
+ribbon:
+  ReadTimeout:  50000
+  ConnectTimeout: 50000
+spring:
+  rabbitmq:
+    host: 112.124.23.15
+    username: jingjing
+    virtual-host: /jingjing
+    port: 5672
+    password: 123456
+    publisher-returns: true
+    publisher-confirm-type: correlated
+
